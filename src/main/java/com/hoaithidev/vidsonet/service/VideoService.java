@@ -11,6 +11,7 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +26,7 @@ public class VideoService {
     FileStorageService fileStorageService;
     VideoRepository videoRepository;
     ChannelRepository channelRepository;
+
 
     public void uploadVideo(VideoRequest request) {
         String fileName = fileStorageService.storeFile(request.getFile());

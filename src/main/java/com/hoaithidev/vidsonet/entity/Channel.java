@@ -26,10 +26,10 @@ public class Channel {
     @Column(length = 500)
     private String description; // Mô tả kênh
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String profileImageUrl; // Ảnh đại diện kênh
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private String bannerImageUrl; // Ảnh bìa kênh
 
     @Column(nullable = false)
@@ -48,5 +48,8 @@ public class Channel {
 
     public int increaseSubscribersCount() {
         return ++subscribersCount;
+    }
+    public int decreaseSubscribersCount() {
+        return --subscribersCount;
     }
 }

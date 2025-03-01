@@ -4,6 +4,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -14,5 +16,10 @@ public class ChannelResponse {
     String id;
     String name;
     String userId;
+    String profileImageUrl;
+    String bannerImageUrl;
+    Integer subscribersCount;
+    List<VideoResponse> videos;
+
     LocalDateTime createdAt;
 }

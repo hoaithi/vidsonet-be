@@ -28,7 +28,7 @@ public class VideoController {
                     .build();
     }
 
-    @GetMapping("/getAllVideo")
+    @GetMapping("/getAll")
     public ApiResponse<List<VideoResponse>> getAllVideo() {
         return ApiResponse.<List<VideoResponse>>builder()
                 .data(videoService.getAllVideo())

@@ -18,7 +18,9 @@ public enum ErrorCode {
     VIDEO_NOT_FOUND(1009, "Video not found", HttpStatus.NOT_FOUND),
     CHANNEL_NOT_FOUND(1010, "Channel not found", HttpStatus.NOT_FOUND),
     CHANNEL_SUBSCRIBED_ALREADY(1011, "Channel subscribed already", HttpStatus.BAD_REQUEST),
-    CHANNEL_ALREADY_EXISTS(1012, "Channel already exists", HttpStatus.BAD_REQUEST);
+    CHANNEL_ALREADY_EXISTS(1012, "Channel already exists", HttpStatus.BAD_REQUEST),
+    PASSWORD_NOT_MATCH(1013, "Password not match", HttpStatus.UNAUTHORIZED),
+    CHANNEL_NOT_SUBSCRIBED_YET(1014, "Channel not subscribed yet", HttpStatus.BAD_REQUEST),;
 
     ErrorCode(int code, String message, HttpStatusCode statusCode) {
         this.code = code;

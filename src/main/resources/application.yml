@@ -15,10 +15,15 @@ spring:
     show-sql: true
   servlet:
     multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
+      max-file-size: 1000MB
+      max-request-size: 1000MB
 file:
   upload-dir: "C:\\Users\\PC\\OneDrive\\Desktop\\uploads"
+jwt:
+  signerKey: "YYzrYVGsu1A65dvMxYP1W+d2LcC7fAFTLoa+5kT9rj5dDNL77BPUyEsMKbGNN2G7"
+channel:
+  profile-image-url: "C:\\Users\\PC\\OneDrive\\Pictures\\kevin-sanjaya3.jpg"
+  banner-image-url: "C:\\Users\\PC\\OneDrive\\Pictures\\banner1.jpg"
 #outbound:
 #  identity:
 #    client-id: "<clientId>"

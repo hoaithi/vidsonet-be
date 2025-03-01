@@ -2,6 +2,7 @@ package com.hoaithidev.vidsonet.dto.request;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
