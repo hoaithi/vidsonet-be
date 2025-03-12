@@ -2,13 +2,13 @@ package com.hoaithidev.vidsonet.controller;
 
 import com.hoaithidev.vidsonet.dto.ApiResponse;
 import com.hoaithidev.vidsonet.dto.request.ChannelRequest;
-import com.hoaithidev.vidsonet.dto.request.SubscribeRequest;
+import com.hoaithidev.vidsonet.dto.request.SubscriptionRequest;
 import com.hoaithidev.vidsonet.service.ChannelService;
-import com.hoaithidev.vidsonet.service.ChannelSubscriptionService;
+import com.hoaithidev.vidsonet.service.SubscriptionService;
+import com.hoaithidev.vidsonet.service.VideoService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/channels")
@@ -16,7 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 @Slf4j
 public class ChannelController {
     private final ChannelService channelService;
-    private final ChannelSubscriptionService channelSubscriptionService;
+    private final VideoService videoService;
+    private final SubscriptionService subscriptionService;
 
     @GetMapping("/getAllChannel")
     public ApiResponse<?> getAllChannel(){
@@ -33,19 +34,35 @@ public class ChannelController {
                 .build();
     }
     @PostMapping("/subscribe")
-    public ApiResponse<?> subscribeChannel(@RequestBody SubscribeRequest subscribeRequest) {
+    public ApiResponse<?> subscribeChannel(@RequestBody SubscriptionRequest request) {
         return ApiResponse.builder()
-                .data(channelSubscriptionService.subscribe(subscribeRequest))
+                .data(subscriptionService.subscribe(request))
                 .message("Subscribe channel successfully")
                 .build();
     }
 
     @PostMapping("/unsubscribe")
-    public ApiResponse<?> unsubscribeChannel(@RequestBody SubscribeRequest subscribeRequest) {
+    public ApiResponse<?> unsubscribeChannel(@RequestBody SubscriptionRequest request) {
         return ApiResponse.builder()
-                .data(channelSubscriptionService.unsubscribe(subscribeRequest))
-                .message("Subscribe channel successfully")
+                .data(subscriptionService.unsubscribe(request))
+                .message("Unsubscribe channel successfully")
                 .build();
     }
+    @GetMapping("/getVideos")
+    public ApiResponse<?> getVideos(@RequestParam String channelId) {
+        return ApiResponse.builder()
+                .data(videoService.getAllVideoByChannelId(channelId))
+                .message("Get videos successfully")
+                .build();
+    }
+
+    @GetMapping("/getSubscribers")
+    public ApiResponse<?> getSubscribers(@RequestParam String channelId) {
+        return ApiResponse.builder()
+                .data(subscriptionService.getSubscribers(channelId))
+                .message("Get subscribers successfully")
+                .build();
+    }
+
 
 }

@@ -63,11 +63,11 @@
 			<version>${projectlombok-lombok.version}</version>
 			<scope>provided</scope>
 		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.mapstruct</groupId>-->
-<!--			<artifactId>mapstruct</artifactId>-->
-<!--			<version>${mapstruct.version}</version>-->
-<!--		</dependency>-->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
@@ -101,17 +101,17 @@
 							<artifactId>lombok-mapstruct-binding</artifactId>
 							<version>${lombok-mapstruct-binding.version}</version>
 						</path>
-<!--						<path>-->
-<!--							<groupId>org.mapstruct</groupId>-->
-<!--							<artifactId>mapstruct-processor</artifactId>-->
-<!--							<version>${mapstruct.version}</version>-->
-<!--						</path>-->
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+						</path>
 					</annotationProcessorPaths>
-<!--					<compilerArgs>-->
-<!--						<arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>-->
-<!--						<arg>-Amapstruct.defaultComponentModel=spring</arg>-->
-<!--						<arg>-Amapstruct.verbose=true</arg>-->
-<!--					</compilerArgs>-->
+					<compilerArgs>
+						<arg>-Amapstruct.suppressGeneratorTimestamp=true</arg>
+						<arg>-Amapstruct.defaultComponentModel=spring</arg>
+						<arg>-Amapstruct.verbose=true</arg>
+					</compilerArgs>
 				</configuration>
 			</plugin>
 		</plugins>

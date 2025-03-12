@@ -60,7 +60,7 @@ public class UserService {
     }
 
 
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public Set<UserResponse> getAllUser() {
         var authention = SecurityContextHolder.getContext().getAuthentication();
         log.info("authention: "+authention.getName());

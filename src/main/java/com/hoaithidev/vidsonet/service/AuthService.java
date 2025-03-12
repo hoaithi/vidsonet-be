@@ -25,16 +25,13 @@ public class AuthService {
     private final JwtUtil jwtUtil;
 
     public String signIn(UserRequest request) throws JOSEException {
-        User user = userRepository.findByEmail(request.getEmail());
-        if (user == null) {
-            throw new AppException(ErrorCode.USER_NOT_EXISTED);
-        }
+        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(() -> new AppException(ErrorCode.USER_NOT_EXISTED));
         boolean isMatch = passwordEncoder.matches(request.getPassword(), user.getPassword());
         if(!isMatch) {
             throw new AppException(ErrorCode.PASSWORD_NOT_MATCH);
         }
 
-        return jwtUtil.generateToken(request.getEmail());
+        return jwtUtil.generateToken(user);
     }
     public boolean introspectToken(String token) throws ParseException, JOSEException {
         return !jwtUtil.isTokenExpired(token)&&jwtUtil.verifyToken(token);

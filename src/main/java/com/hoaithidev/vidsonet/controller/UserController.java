@@ -3,7 +3,7 @@ package com.hoaithidev.vidsonet.controller;
 import com.hoaithidev.vidsonet.dto.ApiResponse;
 import com.hoaithidev.vidsonet.dto.request.UserRequest;
 import com.hoaithidev.vidsonet.service.UserService;
-import com.hoaithidev.vidsonet.service.ChannelSubscriptionService;
+import com.hoaithidev.vidsonet.service.SubscriptionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 @Slf4j
 public class UserController {
     private final UserService userService;
-    private final ChannelSubscriptionService userSubscriptionService;
+    private final SubscriptionService userSubscriptionService;
 
     @PostMapping("/create")
     public ApiResponse<Boolean> create (@RequestBody UserRequest request) {

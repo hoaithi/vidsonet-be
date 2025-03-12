@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -30,8 +31,8 @@ public class User {
 
     private LocalDateTime createdAt;// Ngày tạo tài khoản
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Channel> channels; // Mỗi user có nhiều channel
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Channel channel;
 
     @ManyToOne
     @JoinColumn(name = "role")

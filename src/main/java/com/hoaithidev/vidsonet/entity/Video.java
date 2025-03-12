@@ -5,6 +5,7 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -45,7 +46,16 @@ public class Video {
 
     @ManyToOne
     @JoinColumn(name = "channel_id", nullable = false)
-    private Channel channel; // Video thuộc về một channel
+    private Channel owner; // Video thuộc về một channel
+
+    @OneToMany(mappedBy = "video", cascade = CascadeType.ALL, orphanRemoval = true)
+    Set<VideoCategory> videoCategories;
+
+    @OneToMany(mappedBy = "video", cascade = CascadeType.ALL, orphanRemoval = true)
+    Set<Comment> comments;
+
+    @OneToMany(mappedBy = "video", cascade = CascadeType.ALL, orphanRemoval = true)
+    Set<PlaylistVideo> playlistVideos;
 
 
 

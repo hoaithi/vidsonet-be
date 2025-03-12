@@ -8,7 +8,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class SubscribeRequest {
+public class SubscriptionRequest {
     String subscriberId;
-    String subscribedId;
+    String channelId;
 }

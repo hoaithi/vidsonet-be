@@ -36,20 +36,50 @@ public class Channel {
     @Builder.Default
     private Integer subscribersCount = 0; // Số lượng người đăng ký
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user; // Chủ sở hữu kênh (1 user chỉ có 1 channel)
+    @OneToOne
+    @JoinColumn(name = "user_id", unique = true)
+    private User user; // Kênh thuộc về một user
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Video> videos; // Danh sách video của kênh
 
     @OneToMany(mappedBy = "channel", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Video> videos = new ArrayList<>(); // Danh sách video của kênh
+    private List<Post> posts; // Danh sách bài viết của kênh
+
+    @OneToMany(mappedBy = "channel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Subscription> subscribers; // Danh sách người đăng ký kênh
+
+    @OneToMany(mappedBy = "subscriber", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Subscription> subscriptions; // Danh sách kênh mà kênh này đăng ký
+
+    @OneToMany(mappedBy = "channel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments; // Danh sách comment của kênh
+
+    @OneToMany(mappedBy = "channel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Playlist> playlists; // Danh sách playlist của kênh
+
+    @OneToMany(mappedBy = "recipient", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notification>  receivedNotifications; // Danh sách thông báo của kênh nhận được
+
+    @OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Notification> sentNotifications; // Danh sách thông báo mà kênh đã gửi đi
+
+    @OneToMany(mappedBy = "channel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MembershipPlan> membershipPlans; // Danh sách gói đăng ký của kênh
+
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ChannelMember> memberships; // Danh sách gói đăng ký mà kênh đã mua
+
+    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ChannelMember> soldMemberships; // Danh sách gói đăng ký mà kênh đã bán
+
+    @OneToMany(mappedBy = "channel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Payment> payments; // Danh sách thanh toán của kênh
+
+    @OneToMany(mappedBy = "memberChannel", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Payment> memberChannelPayments; // Danh sách thanh toán của kênh khác mua gói đăng ký
 
     @Column(nullable = false)
     private LocalDateTime createdAt; // Ngày tạo kênh
 
-    public int increaseSubscribersCount() {
-        return ++subscribersCount;
-    }
-    public int decreaseSubscribersCount() {
-        return --subscribersCount;
-    }
 }
